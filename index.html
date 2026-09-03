@@ -120,6 +120,8 @@ header.nav.scrolled{ background:rgba(251,243,226,.86); backdrop-filter:blur(14px
 .about-copy .lede{ font-family:var(--display); font-style:italic; font-weight:400; font-size:1.5rem; color:var(--navy); line-height:1.5; max-width:520px; }
 .about-copy .body-text{ margin-top:24px; font-size:1.02rem; color:#455073; max-width:520px; }
 .about-stats{ margin-top:46px; display:flex; gap:48px; flex-wrap:wrap; }
+/* HIDDEN (temporary — remove this rule to bring back): about section stats */
+.about-stats{ display:none; }
 .about-stats .stat b{ display:block; font-family:var(--display); font-size:2.3rem; color:var(--navy); font-weight:500; }
 .about-stats .stat span{ font-size:.8rem; color:var(--green); letter-spacing:.06em; text-transform:uppercase; font-weight:600; }
 @media (max-width: 900px){ .about-grid{ grid-template-columns:1fr; gap:48px; } .about-visual{ max-width:320px; } }
@@ -273,6 +275,21 @@ footer{ background:var(--navy-deep); color:rgba(251,243,226,.75); padding:90px 0
 .reveal.in{ opacity:1; transform:translateY(0); }
 .reveal-stagger.in > *{ transition-delay:calc(var(--i,0) * 90ms); }
 .center{ text-align:center; margin-left:auto; margin-right:auto; }
+
+/* HIDDEN (temporary — remove these rules to bring back): Art Kits section + its nav/footer links */
+.artkits{ display:none; }
+a[href="#art-kits"]{ display:none; }
+
+.wk-empty{
+  padding:48px 26px;
+  border-top:1px solid rgba(17,44,100,.14);
+  border-bottom:1px solid rgba(17,44,100,.14);
+  border-radius:18px;
+  font-size:1.02rem;
+  color:#5a6488;
+  text-align:center;
+}
+.wk-empty a{ color:var(--navy); font-weight:700; text-decoration:underline; text-underline-offset:3px; }
 </style>
 </head>
 <body>
@@ -567,13 +584,15 @@ footer{ background:var(--navy-deep); color:rgba(251,243,226,.75); padding:90px 0
     { name:"Mariam Adly", role:"Watercolour & Botanicals", bio:"Mariam's botanical watercolour classes are quiet, detailed, and deeply restorative.", initial:"M", grad:"linear-gradient(150deg,#F0C39C,#6F8AD6)" }
   ];
 
-  var WORKSHOPS = [
+  /* Kept for later — same format, currently unused since nothing is scheduled. To bring workshops back, copy items from WORKSHOPS_SAMPLE into WORKSHOPS. */
+  var WORKSHOPS_SAMPLE = [
     { day:"12", mon:"Sep", name:"Intuitive Painting Circle", time:"5:00 PM – 7:30 PM", location:"Zamalek Studio", instructor:"Nour El Sayed", seats:4 },
     { day:"18", mon:"Sep", name:"Hand-Building Ceramics", time:"11:00 AM – 2:00 PM", location:"Maadi Studio", instructor:"Hana Farouk", seats:9 },
     { day:"24", mon:"Sep", name:"Sketchbook & Collage Lab", time:"6:00 PM – 8:00 PM", location:"Zamalek Studio", instructor:"Omar Rashad", seats:2 },
     { day:"02", mon:"Oct", name:"Slow Stitch: Embroidery Basics", time:"4:00 PM – 6:30 PM", location:"New Cairo Studio", instructor:"Laila Adel", seats:6 },
     { day:"09", mon:"Oct", name:"Visual Journaling Evening", time:"5:30 PM – 7:30 PM", location:"Zamalek Studio", instructor:"Youssef Kamal", seats:11 }
   ];
+  var WORKSHOPS = [];
 
   var GALLERY = [
     { size:"h2", label:"Painting circle, August cohort", grad:"linear-gradient(150deg,#9FB2EA,#112C64)" },
@@ -587,10 +606,9 @@ footer{ background:var(--navy-deep); color:rgba(251,243,226,.75); padding:90px 0
   ];
 
   var TESTIMONIALS = [
-    { quote:"I came in expecting a painting class and left having remembered something about myself I'd forgotten. Strange, in the best way.", name:"Yasmin T.", detail:"Intuitive Painting Circle", initial:"Y", grad:"linear-gradient(150deg,#9FB2EA,#112C64)" },
-    { quote:"The instructors never once told me I was doing it wrong. It's the first creative space that's felt like mine.", name:"Karim S.", detail:"Ceramics & Clay", initial:"K", grad:"linear-gradient(150deg,#F0C39C,#b5502a)" },
-    { quote:"Two hours a week that belong entirely to me. My phone stays in my bag and I actually notice that.", name:"Dina M.", detail:"Visual Journaling Evening", initial:"D", grad:"linear-gradient(150deg,#7FAE8E,#2E6B4F)" },
-    { quote:"I signed up alone and left with people I now text weekly. The room just makes that happen.", name:"Ahmed R.", detail:"Sketchbook & Collage Lab", initial:"A", grad:"linear-gradient(150deg,#FCE39B,#c99a1d)" }
+    { quote:"An excellent idea — and from what I've heard, if it's done right it could be a real, more advanced step forward that benefits everyone. Some workshops are really about helping people move on to start their own project after they finish learning.", name:"Nada Alaa", detail:"Handmade Accessories", initial:"N", grad:"linear-gradient(150deg,#9FB2EA,#112C64)" },
+    { quote:"It helped me develop the skill itself, while also using it to express my emotions and let out some energy.", name:"Sara Saad", detail:"Drawing", initial:"S", grad:"linear-gradient(150deg,#F0C39C,#b5502a)" },
+    { quote:"For me, the real benefit is knowing there are people who share the same interests — that alone helps with exchanging ideas and experience, on top of an environment that's genuinely encouraging, because everyone around you shares the same passion.", name:"Mohamed Andeel", detail:"Content Creation & Photography", initial:"M", grad:"linear-gradient(150deg,#7FAE8E,#2E6B4F)" }
   ];
 
   var govSelect = document.getElementById('governorateSelect');
@@ -611,6 +629,12 @@ footer{ background:var(--navy-deep); color:rgba(251,243,226,.75); padding:90px 0
   var pinSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>';
   var clockSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>';
   var wkList = document.getElementById('workshopList');
+  if(WORKSHOPS.length === 0){
+    var empty = document.createElement('div');
+    empty.className = 'wk-empty';
+    empty.innerHTML = 'No workshops are scheduled right now — check back soon, or <a href="#contact">get in touch</a> to be notified when new dates open.';
+    wkList.appendChild(empty);
+  }
   WORKSHOPS.forEach(function(w, i){
     var low = w.seats <= 5;
     var row = document.createElement('div');

@@ -210,11 +210,11 @@ header.nav.scrolled{ background:rgba(251,243,226,.86); backdrop-filter:blur(14px
 @media (max-width: 700px){ .masonry{ columns:2 160px; } }
 .testimonials{ padding:130px 0; background:var(--cream-2); position:relative; overflow:hidden; }
 .testi-track-wrap{ overflow:hidden; }
-.testi-track{ display:flex; gap:26px; transition:transform .7s var(--ease); }
-.testi-card{ flex:0 0 min(560px,86vw); background:var(--white); border-radius:28px; padding:44px 40px; position:relative; }
+.testi-track{ display:flex; gap:26px; transition:transform .7s var(--ease); align-items:flex-start; }
+.testi-card{ flex:0 0 min(560px,86vw); min-height:300px; display:flex; flex-direction:column; justify-content:space-between; gap:24px; background:var(--white); border-radius:28px; padding:44px 40px; position:relative; }
 .testi-card .quote-mark{ font-family:var(--display); font-style:italic; font-size:4rem; color:var(--periwinkle); line-height:.6; display:block; }
 .testi-card p.quote{ margin-top:10px; font-family:var(--display); font-weight:400; font-style:italic; font-size:1.32rem; line-height:1.5; color:var(--navy); }
-.testi-person{ margin-top:28px; display:flex; align-items:center; gap:14px; }
+.testi-person{ margin-top:0; display:flex; align-items:center; gap:14px; }
 .testi-avatar{ width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:var(--display); color:var(--white); font-weight:500; flex:none; }
 .testi-person b{ display:block; color:var(--navy); font-size:.94rem; }
 .testi-person span{ display:block; font-size:.78rem; color:var(--green); margin-top:2px; }
@@ -607,8 +607,8 @@ a[href="#art-kits"]{ display:none; }
 
   var TESTIMONIALS = [
     { quote:"An excellent idea — and from what I've heard, if it's done right it could be a real, more advanced step forward that benefits everyone. Some workshops are really about helping people move on to start their own project after they finish learning.", name:"Nada Alaa", detail:"Handmade Accessories", initial:"N", grad:"linear-gradient(150deg,#9FB2EA,#112C64)" },
-    { quote:"It helped me develop the skill itself, while also using it to express my emotions and let out some energy.", name:"Sara Saad", detail:"Drawing", initial:"S", grad:"linear-gradient(150deg,#F0C39C,#b5502a)" },
-    { quote:"For me, the real benefit is knowing there are people who share the same interests — that alone helps with exchanging ideas and experience, on top of an environment that's genuinely encouraging, because everyone around you shares the same passion.", name:"Mohamed Andeel", detail:"Content Creation & Photography", initial:"M", grad:"linear-gradient(150deg,#7FAE8E,#2E6B4F)" }
+    { quote:"For me, the real benefit is knowing there are people who share the same interests — that alone helps with exchanging ideas and experience, on top of an environment that's genuinely encouraging, because everyone around you shares the same passion.", name:"Mohamed Andeel", detail:"Content Creation & Photography", initial:"M", grad:"linear-gradient(150deg,#7FAE8E,#2E6B4F)" },
+    { quote:"It helped me develop the skill itself, while also using it to express my emotions and let out some energy.", name:"Sara Saad", detail:"Drawing", initial:"S", grad:"linear-gradient(150deg,#F0C39C,#b5502a)" }
   ];
 
   var govSelect = document.getElementById('governorateSelect');
@@ -664,7 +664,7 @@ a[href="#art-kits"]{ display:none; }
     var card = document.createElement('div');
     card.className = 'testi-card';
     card.innerHTML =
-      '<span class="quote-mark">&ldquo;</span><p class="quote">'+t.quote+'</p>'+
+      '<div class="quote-block"><span class="quote-mark">&ldquo;</span><p class="quote">'+t.quote+'</p></div>'+
       '<div class="testi-person"><div class="testi-avatar" style="background:'+t.grad+'">'+t.initial+'</div><div><b>'+t.name+'</b><span>'+t.detail+'</span></div></div>';
     track.appendChild(card);
     var dot = document.createElement('button');
